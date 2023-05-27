@@ -1,0 +1,347 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define NUM 1e18
+#define Mod 1'000'000'007
+#define OO 2'000'000'000
+#define all(v) ((v).begin()), ((v).end())
+#define allr(v) ((v).rbegin()), ((v).rend())
+#define sz(v) ((ll)((v).size()))
+#define Ceil(a, b) ((a / b) + (a % b ? 1 : 0))
+#define is_small(c) (c >= 97 && c <= 122)
+#define is_cap(c) (c >= 65 && c <= 90)
+#define cin(v)   for (auto &i : v)  cin >> i;
+#define cinp(v)    for (auto &i : v) cin >> i.first >> i.second;
+#define coutp(v)      for (auto &i : v) cout << i.first << " " << i.second << "\n";
+#define cin2D(v)      for (auto &i : v)  for (auto &j : i) cin >> j;
+#define cout2D(v)   for (auto &i : v) {  for (auto &j : i) {  cout << j << " "; } cout << "\n";}
+#define cout(v)   for (auto &i : v)  cout << i << " "; cout << "\n";
+#define fixed(n) cout << fixed << setprecision(n);
+#define nl cout << "\n";
+#define Digits(n) 1 + floor(log10(n))  
+#define is_vow(c) (c == 'a' || c == 'o' || c == 'u' || c == 'i' || c == 'e')
+const ll NO = 1073741824;
+const float si = 0.16666666666666666666666666666667;
+// getline( cin>>ws , s )
+
+void fast_io()
+{
+  ios_base::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+ #ifndef ONLINE_JUDGE
+   freopen("output.txt", "w", stdout);
+ #endif
+}
+//********************************classes********************************************
+class Artist 
+{
+  public:
+   char Name [30] ;
+   char Birthplace[20];
+   int Age;
+   char Style_Of_Art [20];
+   int Year_of_Art;
+};
+class user
+{
+    public :
+    char name[20] , pass[20];
+};
+
+//********************************functions********************************************
+void add_Artist()
+{ 
+    fstream f("Artist.txt" , ios::out | ios::app);
+    if(f.is_open())
+    {
+      char newartist='Y';
+     do{
+            Artist a;
+            cout <<"Enter Artist name: \n";
+               cin >> a.Name ;
+            cout << "Enter Artist Birthplace : \n";
+              cin >> a.Birthplace;
+            cout << "Enter Artist Age: \n";
+              cin >> a.Age;
+            cout << "Enter Style of Art about: \n";
+               cin >> a.Style_Of_Art;
+            cout << "Enter Year it was made: \n";
+               cin >> a.Year_of_Art;
+            f >> a.Name >>  a.Birthplace >>  a.Age >> a.Style_Of_Art >> a.Year_of_Art ;
+            cout << "Enter Y/N to Add new Artist in The Gallery";
+            cin >> newartist;
+        } while(newartist=='Y');
+         f.close();
+    }
+ }
+
+void UpdateOptions() {
+    cout << "Press 1 to update the Name " << "\n"
+         << "Press 2 to update the Birthplace " << "\n"
+         << "Press 3 to update the Age " << "\n"
+         << "Press 4 to update Style Of Art " << "\n"
+         << "Press 5 to update Year of Art " << "\n" ;
+}
+
+// void UpdateArtist(){ 
+//     Artist a;
+//     fstream f("Artist.txt" , ios::in | ios::out);
+//     if(f.is_open()) 
+//     {
+//         char Art [20] ;
+//         cout<<"Enter the Artist you want to update\n";
+//           cin >> Art;
+//         bool found = false ;
+//         while(!f.eof()) 
+//          {
+//            f >> a.Name >>  a.Birthplace >>  a.Age >> a.Style_Of_Art >> a.Year_of_Art ;
+//             if(strcmp(Art , a.Name)==0) {
+//                 UpdateOptions();
+//                int n ; cin >> n ;
+//                 if(n == 1)
+//                 {
+//                     cout<<"Enter new name"; 
+//                     cin >> a.Name ;
+//                 }
+//                 else  if(n == 2)
+//                 {
+//                     cout<<"Enter New Birthplace"; 
+//                     cin >> a.Birthplace;
+//                 }
+//                 else  if(n == 3)
+//                 {
+//                     cout<<"Enter New age";  
+//                     cin >> a.Age;
+//                 }
+//                 else  if(n==4)
+//                 {
+//                     cout<<"Enter New Style Of Art"; 
+//                     cin >> a.Style_Of_Art;
+//                 }
+//                 else  if(n==5)
+//                 {
+//                     cout<<"Enter New Year of Art"; 
+//                     cin >> a.Year_of_Art;
+//                 }
+//                 else 
+//                     cout<<"Choose a number from 1 to 5 \n";
+//                
+//                 int cur = f.tellg();
+//                 int siz = sizeof(a);
+//                 f.seekp(cur-siz,ios::beg);
+//                 f.write((char*)&a,sizeof(a));
+//                 f.seekg(cur-siz,ios::beg);
+//                 f.read((char*)&a,sizeof(a));
+//                 found=true; break;
+//             }
+//          }
+//         if(!found) {
+//             cout<<"Artist not exist!" << endl; }
+//         cout<<"If you want to update another Artist Enter Y \n ";
+//         char ch ; cin>>ch;
+//         if(ch == 'Y' or ch == 'y') 
+//             UpdateArtist();
+//         
+//         f.close(); 
+//   }
+// }
+
+  void research()
+ {
+    char str[30];
+      cout << "enter the name of artist you want to search for " << '\n' ;
+        cin >> str;
+     bool found = 0 ;
+     Artist a1;
+     ifstream in("Artist.txt", ios :: in);
+        
+        if(in.is_open())
+        {  
+            in >> a.Name >>  a.Birthplace >>  a.Age >> a.Style_Of_Art >> a.Year_of_Art ;       
+            while(!in.eof())
+            {
+                if (strcmp(str,a1.Name) == 0)
+                {
+                    cout << "name : " << a1.Name << "\n" <<"age : "<< a1.Age << "\n" << "the birth place : "<< a1.Birthplace <<"\n"<<"the style of art : "<< a1.Style_Of_Art <<"\n"<<"the year of art : "<< a1.Year_Of_Art << "\n" ;
+                    cout<<"*******"<<'\n';
+                    found = 1;
+                        break;  
+                }
+                in >> a.Name >>  a.Birthplace >>  a.Age >> a.Style_Of_Art >> a.Year_of_Art ;
+            }
+            if (!found) 
+              cout<<"the Artist does't found ";
+            in.close();
+        }
+     else
+        cout << "Can not open the specified file\n";
+  }
+
+  void encrypt(char s[])
+ {
+    // (\0) -> null  char -> اخر عنصر جوا string 
+    // 
+   for(ll i = 0 ; s[i] != '\0' ; i++) 
+    s[i] += 5 ;
+ }
+ 
+  void decrypt(char s[])
+ {
+   for(ll i = 0 ; s[i] != '\0' ; i++) 
+    s[i] -= 5 ;
+ }
+
+  void diplayArtist()
+ {
+     Artist a ; 
+     ifstream in("Artist.txt",ios::in);
+    if(in.is_open())
+    {
+        cout<<" Name"<<"\t"<<"\t"<<"Birthplace"<<"\t"<<"Age"<<"\t"<<"Style_Of_Art"<<"\t"<<"Year_of_Art"<< "\n";
+        in >> a.Name >>  a.Birthplace >>  a.Age >> a.Style_Of_Art >> a.Year_of_Art ;
+       while(!in.eof())
+       {  
+         
+         cout << " " << a.Name <<"\t" << "\t" << a.Birthplace 
+           << "\t" << "\t" << a.Age << "\t" << a.Style_Of_Art 
+             << "\t" << "\t" << a.Year_of_Art << "\n" ;
+         in >> a.Name >>  a.Birthplace >>  a.Age >> a.Style_Of_Art >> a.Year_of_Art ;
+       }
+       in.close();
+    }
+    else
+    {
+      cout<<" There's a wrong in the system " ;
+      exit(1) ;
+    }
+  }
+
+  void add_user( ) // choice 
+ {  
+         ofstream out ;
+         out.open("users.txt" , ios :: out | ios :: app) ;
+            
+        user s ;
+        if(out.is_open())
+        { 
+            char c = 'y' ; 
+            while(c == 'y')
+            {  
+                cout << "if you want to input your data click on y otherwise click any character \n"  ;
+                cin >> c ;  
+               
+                if(c != 'y')
+                   break ; 
+               
+                cout << "please enter your name\n" ;
+                cin >> s.name ;
+                
+                cout << "please enter your pass\n" ;
+                cin >> s.pass ;
+                encrypt(s.name) ;
+                encrypt(s.pass) ;
+                out << s.name <<"\t" << s.pass <<"\n";  
+            } 
+            out.close() ;     
+        }
+            else
+            cout << "can't open this file\n" ;
+     }   
+ 
+  bool login() 
+ {
+   fstream f("users.txt" , ios::in)  ;
+   bool  find = 0 ;
+    if(f.is_open())
+    {
+        char un[20] , pas[20] ;
+        cout << "Enter your name and password\n" ;
+        cin >> un >> pas ;
+        user s ; 
+        while(!f.eof()) 
+        {
+            f >> s.name >> s.pass ;
+            decrypt(s.name) ;
+            decrypt(s.pass ) ;
+            if(strcmp(s.name , un)  == 0 && strcmp(s.pass , pas)  == 0)
+            {
+                find = 1 ;
+                cout << "welcome " << s.name << " you logged in successfully.."<<"\n" ;  
+                f.close() ;
+                return 1 ; 
+            }
+        }
+       if(!find)
+       {
+         cout << "User name and password not found you need to login first..\n" ;
+         add_user() ; 
+         return 0 ;
+       }
+    }
+  else 
+  {
+     cout <<"File not exist ...\n" ;    
+     exit(1) ;
+  }
+ } 
+
+  void menu1()
+ {
+    // user management 
+   cout <<"Press 1 . if you want to add new artist \n" ;  
+   cout <<"Press 2 . if you want tp display all artists \n" ;  
+   cout <<"Press 3 . if you want to delete artist \n" ;  
+   cout <<"Press 4 . if you want to search for any artist \n" ;  
+   cout <<"Press 5 . if you want to update data about any artist \n" ;  
+ }
+ 
+  void menu2()
+ {
+      cout <<"Press 1 . if you want tp display all artists \n" ;  
+      cout <<"Press 2 . if you want to search for any artist \n" ; 
+ }
+  
+  int main()  
+  { 
+    // add user() ;
+    ll n ; 
+    cout << "Hello  there if you want to login press 1 \n...otherwise if you want the guest mood press 2 \n" ; 
+      cin >> n ;
+    if(n == 1)
+    { 
+        if(login())
+        { 
+           ll ch ;  
+            menu1() ; cin >> ch ;
+            
+            if(ch == 1)
+              add_Artist() ;
+
+            else if(ch == 2)
+             diplayArtist() ;
+            
+            // else if(ch == 3)
+              
+            else if(ch == 4)
+              research() ;
+             
+            else if(ch == 5)
+              UpdateArtist(); 
+              else
+                cout << "Can't find this on the menu .. \n" ;   
+       }      
+     }  
+    else
+    {
+         menu2() ;
+        ll ch ; cin >> ch ;
+      
+        if(ch == 1)
+         diplayArtist() ;
+        else if(ch == 2)
+          research() l
+         else 
+          cout << "Can't find this on the menu .. \n" ;   
+    } 
+     
+      return 0;
+  } 
